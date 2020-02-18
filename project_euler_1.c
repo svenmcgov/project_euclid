@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define SIZE 1000
+#define LIMIT 1000
 void init_arr(int*, int);
 void print_arr(int*, int);
 int sum_arr(int*, int);
@@ -7,18 +7,18 @@ int div_by_three(int);
 int div_by_five(int);
 
 int main(void){
-  int multiples[SIZE];
-  init_arr(multiples, SIZE);
+  int multiples[LIMIT/2];
+  init_arr(multiples, LIMIT/2);
   int i = 0, j = 0;
 
-  for(i=1;i<SIZE;i++){
+  for(i=1;i<LIMIT;i++){
     if(div_by_three(i) || div_by_five(i)){
         multiples[j] = i;
         j++;
     }
   }
 
-  printf("%d\n", sum_arr(multiples, SIZE));
+  printf("%d\n", sum_arr(multiples, LIMIT/2));
   // print_arr(multiples, SIZE);
 
   return 0;
