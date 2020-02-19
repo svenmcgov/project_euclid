@@ -1,1 +1,3 @@
-# project_euler
+# project_euclid
+
+Inspired by Project Euler
