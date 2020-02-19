@@ -3,8 +3,7 @@
 void init_arr(int*, int);
 void print_arr(int*, int);
 int sum_arr(int*, int);
-int div_by_three(int);
-int div_by_five(int);
+int div_by_n(int, int);
 
 int main(void){
   int multiples[LIMIT/2];
@@ -12,7 +11,7 @@ int main(void){
   int i = 0, j = 0;
 
   for(i=1;i<LIMIT;i++){
-    if(div_by_three(i) || div_by_five(i)){
+    if(div_by_n(i, 3) || div_by_n(i, 5)){
         multiples[j] = i;
         j++;
     }
@@ -51,15 +50,9 @@ int sum_arr(int *arr, int size){
   return sum;
 }
 
-int div_by_three(int n){
-  if(n % 3 == 0){
+int div_by_n(int n, int d){
+  if(n % d == 0){
       return 1;
   }
-  return 0;
-}
-
-int div_by_five(int n){
-  if(n % 5 == 0)
-    return 1;
   return 0;
 }
