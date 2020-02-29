@@ -21,7 +21,7 @@ int main(void){
   printf("Digit count for 211 is: %d\n", digit_count(211));
   printf("Digit count for 2019394 is: %d\n", digit_count(2019394));
   */
-  
+
   char* num1 = to_string(405);
   char* num2 = to_string(1146);
 
@@ -45,6 +45,8 @@ int main(void){
   if(div_by_6(num1))
     printf("%s is divisible by 6.\n", num1);
 
+  free(num1);
+  free(num2);
   return 0;
 }
 
