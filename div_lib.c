@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 char* to_string(int);
+int to_int(char*);
 int digit_count(int);
 int digit_count_str(char*);
 int exponent(int, int);
@@ -10,21 +11,16 @@ int char_to_digit(char);
 
 int is_even(char*);
 int div_by_3(char*);
+int div_by_4(char*);
+int div_by_5(char*);
 int div_by_6(char*);
 
 int main(void){
 
-  /*
-  printf("Digit count for 415 is: %d\n", digit_count(415));
-  printf("Digit count for 6 is: %d\n", digit_count(6));
-  printf("Digit count for 17 is: %d\n", digit_count(17));
-  printf("Digit count for 211 is: %d\n", digit_count(211));
-  printf("Digit count for 2019394 is: %d\n", digit_count(2019394));
-  */
-
   char* num1 = to_string(405);
   char* num2 = to_string(1146);
-
+  char* num3 = to_string(765048);
+  char* num4 = to_string(4700);
   // printf("%s\n", num1);
   // printf("10 to the 3 is %d\n", exponent(10, 3));
   if(div_by_3(num1))
@@ -45,8 +41,19 @@ int main(void){
   if(div_by_6(num1))
     printf("%s is divisible by 6.\n", num1);
 
+  if(div_by_4(num3))
+    printf("%s is divisible by 4.\n", num3);
+
+  if(div_by_5(num1))
+    printf("%s is divisible by 5.\n", num1);
+
+  if(div_by_5(num4))
+    printf("%s is divisible by 5.\n", num4);
+
   free(num1);
   free(num2);
+  free(num3);
+  free(num4);
   return 0;
 }
 
@@ -65,6 +72,17 @@ char* to_string(int n){
   *(n_str + i) = (n_copy % 10) + '0';
 
   return n_str;
+}
+
+int to_int(char* num){
+  int i = 0, new_num = 0, length = digit_count_str(num);
+  int length_copy = length;
+
+  for(i = 0; i < length; i++){
+    new_num += char_to_digit(num[i])* exponent(10, length_copy - 1);
+    length_copy--;
+  }
+  return new_num;
 }
 
 int digit_count(int n){
@@ -86,6 +104,8 @@ int digit_count_str(char* num){
   return length;
 }
 int exponent(int base, int power){
+  if(power == 0)
+    return 1;
   if(power == 1)
     return base;
   return base * exponent(base, power-1);
@@ -98,8 +118,9 @@ int char_to_digit(char c){
 int is_even(char* num){
   while(*(num + 1) != '\0'){
     num++;
+
   }
-  
+
   if(*num == '2' || *num == '4' || *num == '6' || *num == '8' || *num == '0')
     return 1;
 
@@ -109,14 +130,40 @@ int is_even(char* num){
 // rough draft -- will try to collapse digits into single digit
 int div_by_3(char* num){
   int i = 0, sum = 0, length = digit_count_str(num);
-  // int *digits = (int *) malloc(length * sizeof(int));
   for(i = 0; i < length; i++){
     sum += *(num + i) - '0';
-    // *(digits + i) = *(num + i) - '0';
   }
   if(sum % 3 ==0)
     return 1;
 
+  return 0;
+}
+
+/* just check the last two digits */
+int div_by_4(char* num){
+  while(*(num + 1) != '\0'){
+    num++;
+  }
+  num--;
+  int last_two_digits = to_int(num);
+  if(last_two_digits % 4 == 0)
+    return 1;
+  // printf("%d\n", new_num);
+  return 0;
+}
+
+/* only check last digit */
+// need to update to check last two digits for '0'
+int div_by_5(char* num){
+  while(*(num + 1) != '\0'){
+    num++;
+  }
+  int length = digit_count_str(num);
+  if(*num == '5')
+    return 1;
+
+  if(*num == '0') // && length > 1)
+    return 1;
   return 0;
 }
 
