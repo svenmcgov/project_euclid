@@ -14,9 +14,11 @@ int div_by_3(char*);
 int div_by_4(char*);
 int div_by_5(char*);
 int div_by_6(char*);
+int div_by_7(char*);
 
 int main(void){
 
+  /* TESTS BELOW */
   char* num1 = to_string(405);
   char* num2 = to_string(1146);
   char* num3 = to_string(765048);
@@ -170,5 +172,15 @@ int div_by_5(char* num){
 int div_by_6(char* num){
   if(is_even(num) && div_by_3(num))
     return 1;
+  return 0;
+}
+
+int div_by_7(char* num){
+
+  // last digit
+  while(*(num + 1) != '\0'){
+    num++;
+  }
+
   return 0;
 }
