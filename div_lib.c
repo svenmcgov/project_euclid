@@ -7,7 +7,7 @@ int digit_count(int);
 int digit_count_str(char*);
 int exponent(int, int);
 int char_to_digit(char);
-
+int last_digit(char*);
 
 int is_even(char*);
 int div_by_3(char*);
@@ -23,8 +23,8 @@ int main(void){
   char* num2 = to_string(1146);
   char* num3 = to_string(765048);
   char* num4 = to_string(4700);
-  // printf("%s\n", num1);
-  // printf("10 to the 3 is %d\n", exponent(10, 3));
+
+  /*
   if(div_by_3(num1))
     printf("%s is divisible by 3.\n", num1);
 
@@ -51,6 +51,14 @@ int main(void){
 
   if(div_by_5(num4))
     printf("%s is divisible by 5.\n", num4);
+    
+  printf("Last digit: %d\n", last_digit(num1));
+  printf("Last digit: %d\n", last_digit(num2));
+  printf("Last digit: %d\n", last_digit(num3));
+  printf("Last digit: %d\n", last_digit(num4));
+  */
+
+
 
   free(num1);
   free(num2);
@@ -117,6 +125,14 @@ int char_to_digit(char c){
   return c - '0';
 }
 
+int last_digit(char * num){
+  while(*(num+1) != '\0')
+    num++;
+
+  int last_dig = char_to_digit(*num);
+  return last_dig;
+}
+
 int is_even(char* num){
   while(*(num + 1) != '\0'){
     num++;
@@ -176,11 +192,8 @@ int div_by_6(char* num){
 }
 
 int div_by_7(char* num){
-
-  // last digit
-  while(*(num + 1) != '\0'){
-    num++;
-  }
+  int last_dig = last_digit(num);
+  printf("%d\n", last_dig);
 
   return 0;
 }
