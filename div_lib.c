@@ -18,6 +18,7 @@ int div_by_5(char*);
 int div_by_6(char*);
 int div_by_7(char*);
 
+int div_by_15(char*);
 int div_by_20(char*);
 
 int main(void){
@@ -33,8 +34,8 @@ int main(void){
   char* num7 = to_string(77);
   char* num8 = to_string(22687);
 
-  char* num9 = to_string(1029020);
-  char* num10 = to_string(23460);
+  char* num9 = to_string(375);
+  char* num10 = to_string(60);
 
 
   // printf("%s\n\n", num9);
@@ -46,11 +47,11 @@ int main(void){
     printf("%s is divisible by 4.\n", num9);
 
   // printf("%s\n\n", num9);
-  if(div_by_20(num9))
-    printf("%s is divisible by 20.\n", num9);
+  if(div_by_15(num9))
+    printf("%s is divisible by 15.\n", num9);
 
-  if(div_by_20(num10))
-    printf("%s is divisible by 20.\n", num10);
+  if(div_by_15(num10))
+    printf("%s is divisible by 15.\n", num10);
 
   /*
   if(div_by_7(num5))
@@ -275,6 +276,12 @@ int div_by_7(char* num){
   if(new_num == 7 || new_num == (-7) || new_num == 0 || new_num == 14 || new_num == (-14))
     return 1;
 
+  return 0;
+}
+
+int div_by_15(char* num){
+  if(div_by_3(num) && div_by_5(num))
+    return 1;
   return 0;
 }
 
