@@ -17,7 +17,7 @@ int div_by_4(char*);
 int div_by_5(char*);
 int div_by_6(char*);
 int div_by_7(char*);
-
+int div_by_8(char*);
 int div_by_10(char*);
 
 int div_by_15(char*);
@@ -284,6 +284,16 @@ int div_by_7(char* num){
   if(new_num == 7 || new_num == (-7) || new_num == 0 || new_num == 14 || new_num == (-14))
     return 1;
 
+  return 0;
+}
+
+int div_by_8(char* num){
+  while(*(num + 3) != '\0')
+    num++;
+
+  int last_three_digits = to_int(num);
+  if(last_three_digits % 8 == 0)
+    return 1;
   return 0;
 }
 
