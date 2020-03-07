@@ -18,6 +18,8 @@ int div_by_5(char*);
 int div_by_6(char*);
 int div_by_7(char*);
 
+int div_by_10(char*);
+
 int div_by_15(char*);
 int div_by_20(char*);
 
@@ -47,12 +49,13 @@ int main(void){
     printf("%s is divisible by 4.\n", num9);
 
   // printf("%s\n\n", num9);
-  if(div_by_15(num9))
-    printf("%s is divisible by 15.\n", num9);
+  if(div_by_10(num9))
+    printf("%s is divisible by 10.\n", num9);
 
-  if(div_by_15(num10))
-    printf("%s is divisible by 15.\n", num10);
+  if(div_by_10(num10))
+    printf("%s is divisible by 10.\n", num10);
 
+  printf("%d\n", exponent(-10, 4));
   /*
   if(div_by_7(num5))
     printf("%s is divisible by 7.\n", num5);
@@ -160,6 +163,11 @@ int digit_count_str(char* num){
   return length;
 }
 int exponent(int base, int power){
+  if(power < 0){
+    printf("%s\n", "Power must be positive (returns int not double)");
+    return 1;
+  }
+
   if(power == 0)
     return 1;
   if(power == 1)
@@ -276,6 +284,12 @@ int div_by_7(char* num){
   if(new_num == 7 || new_num == (-7) || new_num == 0 || new_num == 14 || new_num == (-14))
     return 1;
 
+  return 0;
+}
+
+int div_by_10(char* num){
+  if(is_even(num) && div_by_5(num))
+    return 1;
   return 0;
 }
 
