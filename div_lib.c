@@ -18,9 +18,11 @@ int div_by_5(char*);
 int div_by_6(char*);
 int div_by_7(char*);
 int div_by_8(char*);
+int div_by_9(char*);
 int div_by_10(char*);
 
 int div_by_15(char*);
+int div_by_18(char*);
 int div_by_20(char*);
 
 int main(void){
@@ -36,17 +38,17 @@ int main(void){
   char* num7 = to_string(77);
   char* num8 = to_string(22687);
 
-  char* num9 = to_string(375);
-  char* num10 = to_string(60);
+  char* num9 = to_string(72);
+  char* num10 = to_string(1008);
 
 
   // printf("%s\n\n", num9);
 
-  if(div_by_5(num9))
-    printf("%s is divisible by 5.\n", num9);
+  if(div_by_18(num9))
+    printf("%s is divisible by 18.\n", num9);
 
-  if(div_by_4(num9))
-    printf("%s is divisible by 4.\n", num9);
+  if(div_by_18(num10))
+    printf("%s is divisible by 18.\n", num10);
 
   // printf("%s\n\n", num9);
   if(div_by_10(num9))
@@ -55,7 +57,6 @@ int main(void){
   if(div_by_10(num10))
     printf("%s is divisible by 10.\n", num10);
 
-  printf("%d\n", exponent(-10, 4));
   /*
   if(div_by_7(num5))
     printf("%s is divisible by 7.\n", num5);
@@ -218,7 +219,7 @@ int div_by_3(char* num){
     new_length = digit_count(sum);
     // printf("\n* new length %d /// new num %s *\n", new_length, new_num);
   }
-
+  free(new_num);
   // printf("\n\nSum reduced to %d\n\n", sum);
   if(sum == 3 || sum == 6 || sum == 9)
     return 1;
@@ -297,6 +298,26 @@ int div_by_8(char* num){
   return 0;
 }
 
+int div_by_9(char* num){
+  int i = 0, sum = 0, length = digit_count_str(num), new_length = length;
+  char *new_num = malloc(100 * sizeof(char));
+  strcpy(new_num, num);
+
+  while(new_length > 1){
+    sum = 0;
+    for(i = 0; i < new_length; i++){
+      sum += *(new_num + i) - '0';
+    }
+    strcpy(new_num, to_string(sum));
+    new_length = digit_count(sum);
+    // printf("\n* new length %d /// new num %s *\n", new_length, new_num);
+    free(new_num);
+    if(sum == 9)
+      return 1;
+  }
+  return 0;
+}
+
 int div_by_10(char* num){
   if(is_even(num) && div_by_5(num))
     return 1;
@@ -305,6 +326,12 @@ int div_by_10(char* num){
 
 int div_by_15(char* num){
   if(div_by_3(num) && div_by_5(num))
+    return 1;
+  return 0;
+}
+
+int div_by_18(char* num){
+  if(is_even(num) && div_by_9(num))
     return 1;
   return 0;
 }
