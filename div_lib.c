@@ -335,7 +335,7 @@ int div_by_12(char* num){
 }
 
 int div_by_14(char* num){
-  if(div_by_3(num) && div_by_7(num))
+  if(is_even(num) && div_by_7(num))
     return 1;
   return 0;
 }
