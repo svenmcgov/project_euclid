@@ -21,6 +21,10 @@ int div_by_8(char*);
 int div_by_9(char*);
 int div_by_10(char*);
 
+
+int div_by_12(char*);
+
+int div_by_14(char*);
 int div_by_15(char*);
 int div_by_18(char*);
 int div_by_20(char*);
@@ -324,6 +328,17 @@ int div_by_10(char* num){
   return 0;
 }
 
+int div_by_12(char* num){
+  if(div_by_3(num) && div_by_4(num))
+    return 1;
+  return 0;
+}
+
+int div_by_14(char* num){
+  if(div_by_3(num) && div_by_7(num))
+    return 1;
+  return 0;
+}
 int div_by_15(char* num){
   if(div_by_3(num) && div_by_5(num))
     return 1;
