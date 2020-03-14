@@ -4,12 +4,13 @@
 void ptr_test(char*);
 
 int main(void){
-  char* str1 = malloc(6 * sizeof(char));
+  char* str1;
   scanf("%s", str1);
 
   ptr_test(str1);
 
   printf("in main: %s\n", str1);
+  // free(str1);
   return 0;
 }
 
