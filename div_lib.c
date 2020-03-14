@@ -20,7 +20,7 @@ int div_by_7(char*);
 int div_by_8(char*);
 int div_by_9(char*);
 int div_by_10(char*);
-
+int div_by_11(char*);
 
 int div_by_12(char*);
 
@@ -325,6 +325,11 @@ int div_by_9(char* num){
 int div_by_10(char* num){
   if(is_even(num) && div_by_5(num))
     return 1;
+  return 0;
+}
+
+int div_by_11(char* num){
+    
   return 0;
 }
 
