@@ -42,17 +42,17 @@ int main(void){
   char* num7 = to_string(77);
   char* num8 = to_string(22687);
 
-  char* num9 = to_string(72);
-  char* num10 = to_string(1008);
+  char* num9 = to_string(1364);
+  char* num10 = to_string(3729);
 
 
   // printf("%s\n\n", num9);
 
-  if(div_by_18(num9))
-    printf("%s is divisible by 18.\n", num9);
+  if(div_by_11(num9))
+    printf("%s is divisible by 11.\n", num9);
 
-  if(div_by_18(num10))
-    printf("%s is divisible by 18.\n", num10);
+  if(div_by_11(num10))
+    printf("%s is divisible by 11.\n", num10);
 
   // printf("%s\n\n", num9);
   if(div_by_10(num9))
@@ -329,7 +329,19 @@ int div_by_10(char* num){
 }
 
 int div_by_11(char* num){
-    
+  int sum = 0, i = 0;
+  while(*num != '\0'){
+    if(i % 2 == 0){
+      sum += char_to_digit(*num++);
+      i++;
+      continue;
+    }
+    sum -= char_to_digit(*num++);
+    i++;
+  }
+  printf("%d\n", sum);
+  if(sum == 11 || sum == -11 || sum == 0)
+    return 1;
   return 0;
 }
 
