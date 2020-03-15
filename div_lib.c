@@ -167,6 +167,8 @@ int digit_count_str(char* num){
   }
   return length;
 }
+
+/* recursive exp, positive int power */
 int exponent(int base, int power){
   if(power < 0){
     printf("%s\n", "Power must be positive (returns int not double)");
