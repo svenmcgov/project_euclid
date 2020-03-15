@@ -355,7 +355,7 @@ int div_by_12(char* num){
   return 0;
 }
 
-
+/* rough draft - need more test cases - 39 greatest number that causes inf loop? */
 int div_by_13(char* num){
   char *num_copy = malloc(100 * sizeof(char));
   strcpy(num_copy, num);
