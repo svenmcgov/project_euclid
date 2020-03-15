@@ -9,7 +9,8 @@ int digit_count_str(char*);
 int exponent(int, int);
 int char_to_digit(char);
 int last_digit(char*);
-void str_drop_last(char*);
+/* return last */
+char str_drop_last(char*);
 
 int is_even(char*);
 int div_by_3(char*);
@@ -21,9 +22,8 @@ int div_by_8(char*);
 int div_by_9(char*);
 int div_by_10(char*);
 int div_by_11(char*);
-
 int div_by_12(char*);
-
+int div_by_13(char*);
 int div_by_14(char*);
 int div_by_15(char*);
 int div_by_18(char*);
@@ -42,17 +42,17 @@ int main(void){
   char* num7 = to_string(77);
   char* num8 = to_string(22687);
 
-  char* num9 = to_string(1364);
-  char* num10 = to_string(3729);
+  char* num9 = to_string(169);
+  char* num10 = to_string(32955);
 
 
   // printf("%s\n\n", num9);
 
-  if(div_by_11(num9))
-    printf("%s is divisible by 11.\n", num9);
+  if(div_by_13(num9))
+    printf("%s is divisible by 13.\n", num9);
 
-  if(div_by_11(num10))
-    printf("%s is divisible by 11.\n", num10);
+  if(div_by_13(num10))
+    printf("%s is divisible by 13.\n", num10);
 
   // printf("%s\n\n", num9);
   if(div_by_10(num9))
@@ -194,10 +194,12 @@ int last_digit(char * num){
   return last_dig;
 }
 
-void str_drop_last(char* num){
+char str_drop_last(char* num){
   while(*(num+1) != '\0')
     num++;
+  char last = *num;
   *num = '\0';
+  return last;
 }
 
 int is_even(char* num){
@@ -350,6 +352,38 @@ int div_by_11(char* num){
 int div_by_12(char* num){
   if(div_by_3(num) && div_by_4(num))
     return 1;
+  return 0;
+}
+
+
+int div_by_13(char* num){
+  char *num_copy = malloc(100 * sizeof(char));
+  strcpy(num_copy, num);
+  char last = str_drop_last(num_copy);
+  int last_dig = char_to_digit(last);
+  int first_digits = to_int(num_copy);
+  int new_num = first_digits + 4 * last_dig;
+  printf("%d %d %d\n", last_dig, first_digits, new_num);
+  int i = 0;
+  while(new_num > 39){
+    char* new_num_copy = to_string(new_num);
+    last_dig = last_digit(new_num_copy);
+    str_drop_last(new_num_copy);
+    first_digits = to_int(new_num_copy);
+    free(new_num_copy);
+    new_num = first_digits + 4 * last_dig;
+    printf("%d %d %d\n", last_dig, first_digits, new_num);
+    printf("%d\n", new_num);
+    i++;
+    if(i>5)
+      break;
+  }
+  free(num_copy);
+  printf("%d\n", new_num);
+
+  if(new_num == 13 || new_num == 26 || new_num == 39)
+    return 1;
+
   return 0;
 }
 
