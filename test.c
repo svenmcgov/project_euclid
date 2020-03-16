@@ -8,7 +8,8 @@ int main(void){
   scanf("%s", str1);
 
   ptr_test(str1);
-
+  char name[] = "Petra";
+  printf("%s\n", name);
   printf("in main: %s\n", str1);
   // free(str1);
   return 0;
